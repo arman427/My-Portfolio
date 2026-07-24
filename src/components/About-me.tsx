@@ -10,9 +10,9 @@ interface Props {
 
 export function AboutMe({ className }: Props) {
    return (
-      <div className={cn("relative z-50 min-h-screen flex items-center", className)}>
+      <div className={cn("min-h-screen flex items-center about-section", className)} id="about">
          <Container>
-            <div className="grid grid-cols-[1fr_auto] gap-60">
+            <div className="grid grid-cols-[1fr_auto] gap-60 items-center">
                <div className="">
                   <h1 className="text-5xl font-title tracking-tight mb-2 text-muted"><span className="text-accent">Интерфейсы</span> для людей</h1>
                   <p className="mb-4">Веб-разработчик. Frontend. Адаптивная вёрстка.</p>
@@ -96,7 +96,7 @@ export function AboutMe({ className }: Props) {
                </div>
 
                {/* Картинка */}
-               <div className="w-[370px] max-w-full bg-accent/50">
+               <div className="relative h-[450px] w-[370px] shrink-0 overflow-hidden rounded-3xl about-image">
 
                </div>
             </div>

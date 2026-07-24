@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope, Unbounded } from "next/font/google";
 import "./globals.css";
+import { SmoothScroll } from "@/components/SmoothScroll";
 
 const manropeSans = Manrope({
    variable: "--font-nunito-sans",
@@ -27,7 +28,11 @@ export default function RootLayout({
          lang="en"
          className={`${manropeSans.variable} ${unboundedMono.variable} h-full antialiased`}
       >
-         <body className="min-h-full flex flex-col">{children}</body>
+         <body className="min-h-full flex flex-col">
+            <SmoothScroll>
+               {children}
+            </SmoothScroll>
+         </body>
       </html>
    );
 }
