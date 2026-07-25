@@ -26,7 +26,7 @@ export function CurrentTime() {
 
    return (
       <p>
-         Россия, Волгоград &ndash; <span className="animate-pulse">{time || "--:--"}</span> GMT +3
+         Россия, Волгоград &mdash; <span className="animate-pulse">{time || "--:--"}</span> GMT +3
       </p>
    );
 }

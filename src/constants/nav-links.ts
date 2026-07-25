@@ -13,7 +13,7 @@ export const NAV_LINKS: NavLink[] = [
    { label: "Отзывы", href: "#reviews" },
    {
       label: "Контакты",
-      hoverLabel: "Привет, это я",
+      hoverLabel: "Скролл",
       href: "#contacts",
       isButton: true,
    },

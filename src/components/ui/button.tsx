@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 interface BaseProps {
    className?: string;
    variant?: "default" | "outline";
+   onClick?: () => void;
    children: React.ReactNode;
 }
 
@@ -21,7 +22,7 @@ const getClassName = (variant: "default" | "outline" = "default", className?: st
       "group relative isolate overflow-hidden rounded-full bg-accent tracking-wider text-white cursor-pointer duration-300 ease hover:shadow-lg",
       className,
       {
-         "text-muted hover:text-white bg-transparent border border-muted": variant === "outline",
+         "text-muted hover:text-white bg-transparent": variant === "outline",
       }
    );
 
@@ -30,13 +31,13 @@ const getInnerSpan = (variant: "default" | "outline" = "default") => (
       aria-hidden="true"
       className={cn(
          "pointer-events-none absolute -inset-px z-0 bg-muted duration-300",
-         variant === "default" && "[clip-path:polygon(0_0,0_0,-50%_100%,0_100%)] group-hover:[clip-path:polygon(0_0,150%_0,100%_100%,0_100%)]",
-         variant === "outline" && "[clip-path:polygon(100%_100%,100%_100%,150%_0,100%_0)] group-hover:[clip-path:polygon(100%_100%,-50%_100%,0_0,100%_0)]"
+         variant === "default" && "[clip-path:circle(0%_at_0%_0%)] group-hover:[clip-path:circle(140%_at_0%_0%)]",
+         variant === "outline" && "[clip-path:circle(0%_at_100%_100%)] group-hover:[clip-path:circle(140%_at_100%_100%)]"
       )}
    />
 );
 
-export function Button({ className, children, variant = "default", href }: Props) {
+export function Button({ className, onClick, children, variant = "default", href }: Props) {
    if (href) {
       return (
          <a href={href} className={cn("flex items-center", getClassName(variant, className))}>
@@ -49,6 +50,7 @@ export function Button({ className, children, variant = "default", href }: Props
    return (
       <button
          type="button"
+         onClick={onClick}
          className={getClassName(variant, className)}
       >
          <span className="relative z-10 transition-colors duration-300">{children}</span>

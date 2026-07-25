@@ -1,15 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { Container } from "./container";
-import { CurrentTime } from "./currentTime";
-import { Button } from "./button";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { Navigation } from "./Navigation";
+import { Navigation } from "../layout/navigation";
 import { Flip } from "gsap/Flip";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
+import { Button } from "../ui";
+import { CurrentTime } from "../shared";
 
 interface Props {
    className?: string
@@ -17,28 +16,22 @@ interface Props {
 
 gsap.registerPlugin(ScrollTrigger, Flip);
 
-export function Welcome({ className }: Props) {
+export function Hero({ className }: Props) {
    const imageWrapperRef = useRef<HTMLDivElement>(null);
 
    useGSAP(() => {
       const imageWrapper = imageWrapperRef.current;
-      const aboutSlot =
-         document.querySelector<HTMLElement>(".about-image");
-
+      const aboutSlot = document.querySelector<HTMLElement>(".about-image");
       if (!imageWrapper || !aboutSlot) {
          console.warn("Не найдена картинка или слот .about-image");
          return;
       }
 
-      // Анимация при загрузке
-      const introTimeline = gsap.timeline();
-
-      introTimeline
+      // --- Intro ---
+      gsap.timeline()
          .fromTo(
             imageWrapper,
-            {
-               clipPath: "inset(100% 0% 0% 0% round 24px)",
-            },
+            { clipPath: "inset(100% 0% 0% 0% round 24px)" },
             {
                clipPath: "inset(0% 0% 0% 0% round 24px)",
                duration: 1,
@@ -48,47 +41,70 @@ export function Welcome({ className }: Props) {
          )
          .from(
             [".firstName", ".lastName"],
-            {
-               opacity: 0,
-               y: 10,
-               duration: 0.8,
-               ease: "expo.inOut",
-               stagger: 0.1,
-            },
+            { opacity: 0, y: 10, duration: 0.8, ease: "expo.inOut", stagger: 0.1 },
             "-=0.3"
          );
 
-      // Вычисляем положение целевого слота
-      const fitVars = Flip.fit(imageWrapper, aboutSlot, {
-         getVars: true,
-         scale: true,
-      });
+      // --- Пересчёт цели на каждом refresh ---
+      let fitVars: gsap.TweenVars = {};
 
-      // Перемещение в следующий блок
-      gsap.to(imageWrapper, {
-         ...fitVars,
-         rotateY: 360,
-         ease: "none",
+      const measure = () => {
+         // сбрасываем трансформы, чтобы мерить от исходного состояния
+         gsap.set(imageWrapper, { clearProps: "transform,width,height" });
+         fitVars =
+            Flip.fit(imageWrapper, aboutSlot, {
+               getVars: true,
+               scale: true,
+            }) ?? {};
+      };
 
+      measure();
+      ScrollTrigger.addEventListener("refreshInit", measure);
+
+      const tl = gsap.timeline({
          scrollTrigger: {
             trigger: ".about-section",
-            start: "top 70%",
-            end: "bottom bottom",
-            scrub: 2,
+            start: "top bottom",   // как только блок появился снизу
+            end: "top top",        // пока не упёрся в верх окна
+            scrub: true,           // 1:1 со скроллом, без инерции
             invalidateOnRefresh: true,
          },
       });
 
-      // Полезно после полной загрузки страницы
-      // и вычисления размеров изображений
-      ScrollTrigger.refresh();
+      tl.to(imageWrapper, {
+         ease: "none",
+         // функциональные значения -> пересчитаются на refresh
+         x: () => fitVars.x as number,
+         y: () => fitVars.y as number,
+         scaleX: 1.2,
+         scaleY: 1.2,
+         rotation: () => (fitVars.rotation as number) ?? 0,
+         duration: 1,
+      });
+
+      // refresh после реальной загрузки картинок и шрифтов
+      Promise.all([
+         document.fonts.ready,
+         ...Array.from(document.images)
+            .filter((img) => !img.complete)
+            .map(
+               (img) =>
+                  new Promise((res) => {
+                     img.onload = img.onerror = res;
+                  })
+            ),
+      ]).then(() => ScrollTrigger.refresh());
+
+      return () => {
+         ScrollTrigger.removeEventListener("refreshInit", measure);
+      };
    }, []);
 
    return (
       <div className="relative min-h-screen">
-         <div className="pointer-events-none fixed inset-x-0 bottom-0 z-60 h-70 bg-ink">
+         <div className="pointer-events-none fixed inset-x-0 bottom-0 z-60 h-50 bg-ink">
             <div
-               className="absolute inset-0 bg-gradient-to-t from-background/60 via-background/40 to-transparent backdrop-blur-lg [mask-image:linear-gradient(to_top,black_35%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_top,black_35%,transparent_100%)]"
+               className="absolute inset-0 bg-gradient-to-t from-background/50 via-background/40 to-transparent backdrop-blur-lg [mask-image:linear-gradient(to_top,black_35%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_top,black_35%,transparent_100%)]"
             />
 
             <Navigation />
@@ -114,12 +130,12 @@ export function Welcome({ className }: Props) {
 
          <section className="px-40 flex min-h-screen items-center justify-center gap-16">
             <div className="grid h-[450px] flex-1 grid-rows-[1fr_auto_1fr]">
-               <p className="self-end pb-10">
+               <p className="self-end pb-6">
                   Next.js Разработчик
                   Frontend & Backend
                </p>
 
-               <h1 className="font-title text-8xl font-bold text-muted firstName">
+               <h1 className="font-title text-8xl tracking-tight font-extrabold text-muted firstName">
                   АРМАН
                </h1>
 
@@ -130,7 +146,7 @@ export function Welcome({ className }: Props) {
                </div>
             </div>
 
-            <div ref={imageWrapperRef} className="relative h-[450px] w-[370px] shrink-0 overflow-hidden rounded-3xl welcome-img-wrapper">
+            <div ref={imageWrapperRef} className="relative h-[480px] w-[400px] shrink-0 overflow-hidden rounded-3xl welcome-img-wrapper">
                <Image
                   src="/portret.jpeg"
                   alt="Портрет"
@@ -140,11 +156,11 @@ export function Welcome({ className }: Props) {
             </div>
 
             <div className="grid h-[450px] flex-1 grid-rows-[1fr_auto_1fr] text-right">
-               <p className="self-end pb-10">
+               <p className="self-end pb-6">
                   React & TypeScript & Node.js & Prisma
                </p>
 
-               <h1 className="font-title text-8xl font-bold text-muted lastName">
+               <h1 className="font-title tracking-tight text-8xl font-extrabold text-muted lastName">
                   БАБАЯН
                </h1>
 

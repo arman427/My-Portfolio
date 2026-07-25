@@ -2,7 +2,6 @@
 
 :root {
    --muted: #333333;
-   --cream: #F2EBDD;
    --text: #6D6D6D;
    --background: #EAEAEA;
    --accent: #009b5f;
@@ -10,7 +9,6 @@
 
 @theme inline {
    --color-muted: var(--muted);
-   --color-cream: var(--cream);
    --color-accent: var(--accent);
    --color-text: var(--text);
    --color-background: var(--background);
@@ -24,4 +22,52 @@ body {
 
 p {
    @apply text-text;
+}
+
+.skills-marquee .swiper-wrapper {
+   transition-timing-function: linear !important;
+}
+
+.pill {
+   position: relative;
+}
+
+.pill::before {
+   content: "";
+   position: absolute;
+   inset: 0;
+   border-radius: inherit;
+   padding: 1px;
+   background: conic-gradient(from 0deg,
+         rgba(0, 0, 0, 0.90) 0deg 65deg,
+         rgba(0, 0, 0, 0.02) 85deg 95deg,
+         rgba(0, 0, 0, 0.90) 115deg 245deg,
+         rgba(0, 0, 0, 0.02) 265deg 275deg,
+         rgba(0, 0, 0, 0.90) 295deg 360deg);
+   -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+   -webkit-mask-composite: xor;
+   mask-composite: exclude;
+}
+
+@keyframes marquee {
+   from {
+      transform: translateX(0);
+   }
+
+   to {
+      transform: translateX(calc(-50% - 1.5rem));
+   }
+}
+
+.marquee__track {
+   animation: marquee 30s linear infinite;
+   will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+   .marquee__track {
+      animation: none;
+   }
 }

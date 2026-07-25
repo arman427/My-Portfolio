@@ -1,11 +1,13 @@
-import { AboutMe } from "@/components/About-me";
-import { Welcome } from "@/components/Welcome";
+import { AboutMe, Hero, Projects, Services, Skills } from "@/components/sections";
 
 export default function Home() {
    return (
       <>
-         <Welcome />
+         <Hero />
          <AboutMe />
+         <Skills />
+         <Services />
+         <Projects />
       </>
    );
 }

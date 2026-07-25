@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import { Manrope, Unbounded } from "next/font/google";
+import { Manrope, Wix_Madefor_Display } from "next/font/google";
 import "./globals.css";
-import { SmoothScroll } from "@/components/SmoothScroll";
+import { SmoothScroll } from "@/components/providers/SmoothScroll";
 
 const manropeSans = Manrope({
    variable: "--font-nunito-sans",
-   subsets: ["latin"],
+   subsets: ["latin", "cyrillic"],
 });
 
-const unboundedMono = Unbounded({
+const unboundedMono = Wix_Madefor_Display({
    variable: "--font-unbounded-mono",
-   subsets: ["latin"],
+   subsets: ["latin", "cyrillic"],
 });
 
 export const metadata: Metadata = {
