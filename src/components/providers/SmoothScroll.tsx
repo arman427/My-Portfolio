@@ -17,7 +17,14 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
          autoRaf: false,
          smoothWheel: true,
          lerp: 0.1,
-         anchors: true,
+         anchors: {
+            duration: 1.5,
+            offset: -20,
+            easing: (t: number) =>
+               t < 0.5
+                  ? 8 * Math.pow(t, 4)
+                  : 1 - Math.pow(-2 * t + 2, 4) / 2,
+         },
       });
 
       const handleScroll = () => {

@@ -10,7 +10,7 @@ interface Props {
 
 export function Services({ className }: Props) {
    return (
-      <div className={cn("mb-50", className)}>
+      <div className={cn("mb-50", className)} id="services">
          <Container>
             <div className="mb-14 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
                <div>

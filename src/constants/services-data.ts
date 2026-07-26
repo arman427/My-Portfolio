@@ -1,6 +1,5 @@
 import { Rocket, Layers, PenTool, Wrench, LayoutDashboard, Sparkles } from "lucide-react";
 
-
 export const SERVICES = [
    {
       id: 1,
@@ -60,8 +59,6 @@ export const SERVICES = [
          "Подключусь к существующему проекту: новая функциональность, исправление адаптива, ускорение загрузки, рефакторинг.",
       icon: Wrench,
       stack: ["React", "Next.js", "TypeScript", "Git"],
-      timeline: "почасово"
+      timeline: "Почасово"
    }
 ] as const;
-
-export type Services = typeof SERVICES[number];

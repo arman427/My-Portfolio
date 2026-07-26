@@ -14,12 +14,12 @@ import { Heading } from "../ui";
 
 export function Skills({ className }: Props) {
    return (
-      <section className="mb-40">
+      <section className="mb-50">
          <Container>
             <div className="marquee relative overflow-hidden">
-               <Heading accent="Технологии" size="card" className="text-center">
+               {/* <Heading accent="Технологии" size="card" className="text-center">
                   , которыми я пользуюсь.
-               </Heading>
+               </Heading> */}
                <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-50 bg-linear-to-r from-background via-background/70 to-transparent" />
                <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-50 bg-linear-to-l from-background via-background/70 to-transparent" />
                <div className="marquee__track flex w-max gap-12 py-10">
