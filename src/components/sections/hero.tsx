@@ -20,6 +20,7 @@ export function Hero({ className }: Props) {
    const imageWrapperRef = useRef<HTMLDivElement>(null);
 
    useGSAP(() => {
+      let isMounted = true;
       const imageWrapper = imageWrapperRef.current;
       const aboutSlot = document.querySelector<HTMLElement>(".about-image");
       if (!imageWrapper || !aboutSlot) {
@@ -29,19 +30,18 @@ export function Hero({ className }: Props) {
 
       // --- Intro ---
       gsap.timeline()
-         .fromTo(
+         .to(
             imageWrapper,
-            { clipPath: "inset(100% 0% 0% 0% round 24px)" },
             {
                clipPath: "inset(0% 0% 0% 0% round 24px)",
                duration: 1,
                ease: "power3.inOut",
-               delay: 0.4,
+               delay: 0.2,
             }
          )
-         .from(
+         .to(
             [".firstName", ".lastName"],
-            { opacity: 0, y: 10, duration: 0.8, ease: "expo.inOut", stagger: 0.1 },
+            { opacity: 1, y: 0, duration: 0.8, ease: "expo.inOut", stagger: 0.1 },
             "-=0.3"
          );
 
@@ -89,13 +89,18 @@ export function Hero({ className }: Props) {
             .filter((img) => !img.complete)
             .map(
                (img) =>
-                  new Promise((res) => {
-                     img.onload = img.onerror = res;
+                  new Promise<void>((resolve) => {
+                     img.onload = img.onerror = () => resolve();
                   })
             ),
-      ]).then(() => ScrollTrigger.refresh());
+      ]).then(() => {
+         if (isMounted) {
+            ScrollTrigger.refresh();
+         }
+      });
 
       return () => {
+         isMounted = false;
          ScrollTrigger.removeEventListener("refreshInit", measure);
       };
    }, []);
@@ -135,7 +140,7 @@ export function Hero({ className }: Props) {
                   Frontend & Backend
                </p>
 
-               <h1 className="font-title text-8xl tracking-tight font-extrabold text-muted firstName">
+               <h1 className="font-title opacity-0 translate-y-[10px] text-8xl tracking-tight font-extrabold text-muted firstName">
                   АРМАН
                </h1>
 
@@ -146,11 +151,18 @@ export function Hero({ className }: Props) {
                </div>
             </div>
 
-            <div ref={imageWrapperRef} className="relative h-[480px] w-[400px] shrink-0 overflow-hidden rounded-3xl welcome-img-wrapper">
+            <div
+               ref={imageWrapperRef}
+               className="relative h-[480px] w-[400px] shrink-0 overflow-hidden rounded-3xl welcome-img-wrapper"
+               style={{
+                  clipPath: "inset(100% 0% 0% 0%)",
+               }}
+            >
                <Image
                   src="/portret.jpeg"
                   alt="Портрет"
                   fill
+                  quality={100}
                   className="object-cover welcome-img rounded-3xl relative z-400"
                />
             </div>
@@ -160,7 +172,7 @@ export function Hero({ className }: Props) {
                   React & TypeScript & Node.js & Prisma
                </p>
 
-               <h1 className="font-title tracking-tight text-8xl font-extrabold text-muted lastName">
+               <h1 className="font-title opacity-0 translate-y-[10px] tracking-tight text-8xl font-extrabold text-muted lastName">
                   БАБАЯН
                </h1>
 

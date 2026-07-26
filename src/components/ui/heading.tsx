@@ -28,6 +28,7 @@ const headingVariants = cva("tracking-tight text-muted font-title font-bold", {
 
 interface HeadingProps extends VariantProps<typeof headingVariants> {
    children: ReactNode;
+   second?: boolean;
    /** Слово или фраза, которую нужно подсветить акцентным цветом */
    accent?: string;
    as?: ElementType;
@@ -41,14 +42,33 @@ export function Heading({
    size,
    align,
    balance,
+   second,
    className
 }: HeadingProps) {
    const Tag = as ?? (size === "hero" ? "h1" : size === "card" ? "h3" : "h2");
 
    return (
-      <Tag className={cn(headingVariants({ size, align, balance }), className)}>
-         {accent && <span className="text-accent">{accent} </span>}
-         {children}
+      <Tag
+         className={cn(
+            headingVariants({ size, align, balance }),
+            className
+         )}
+      >
+         {second ? (
+            <>
+               {children}
+               {accent && (
+                  <span className="text-accent"> {accent}</span>
+               )}
+            </>
+         ) : (
+            <>
+               {accent && (
+                  <span className="text-accent">{accent} </span>
+               )}
+               {children}
+            </>
+         )}
       </Tag>
    );
 }
