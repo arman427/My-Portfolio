@@ -20,7 +20,7 @@ export function Services({ className }: Props) {
                   </p>
                   <Heading accent="Решаю">
                      задачи<br />
-                     вашего бизнеса.
+                     вашего бизнеса
                   </Heading>
                </div>
 

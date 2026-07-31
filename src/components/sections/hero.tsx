@@ -107,9 +107,9 @@ export function Hero({ className }: Props) {
 
    return (
       <div className="relative min-h-screen">
-         <div className="pointer-events-none fixed inset-x-0 bottom-0 z-60 h-50 bg-ink">
+         <div className="pointer-events-none fixed inset-x-0 bottom-0 z-60 h-60 bg-ink">
             <div
-               className="absolute inset-0 bg-gradient-to-t from-background/50 via-background/40 to-transparent backdrop-blur-lg [mask-image:linear-gradient(to_top,black_35%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_top,black_35%,transparent_100%)]"
+               className="absolute inset-0 bg-gradient-to-t from-background/50 via-background/40 to-background/10 backdrop-blur-lg [mask-image:linear-gradient(to_top,black_35%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_top,black_35%,transparent_100%)]"
             />
 
             <Navigation />

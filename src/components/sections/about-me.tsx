@@ -20,7 +20,7 @@ export function AboutMe({ className }: Props) {
                         Обо мне
                      </p>
                      <Heading size="section" accent="Интерфейсы" className="mb-2">
-                        для людей.
+                        для людей
                      </Heading>
                      <p className="mb-4">Веб-разработчик &middot; Frontend &middot; Адаптивная вёрстка</p>
                      <p className="mb-4 text-pretty max-w-165">Проектирую и верстаю сайты, которыми приятно пользоваться. Объединяю продуманную структуру, аккуратную верстку и плавные анимации, чтобы ваш проект выглядел максимально стильно и современно.</p>

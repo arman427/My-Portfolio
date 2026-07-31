@@ -20,7 +20,7 @@ export function Projects({ className }: Props) {
                      <span className="h-px w-5 bg-text rounded-full" />
                      Портфолио
                   </p>
-                  <Heading accent="проекты." second>
+                  <Heading accent="проекты" second>
                      Последние
                   </Heading>
                </div>

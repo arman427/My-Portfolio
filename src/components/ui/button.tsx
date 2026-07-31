@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 interface BaseProps {
    className?: string;
    variant?: "default" | "outline";
+   type?: "submit" | "button";
    onClick?: () => void;
    children: React.ReactNode;
 }
@@ -31,13 +32,13 @@ const getInnerSpan = (variant: "default" | "outline" = "default") => (
       aria-hidden="true"
       className={cn(
          "pointer-events-none absolute -inset-px z-0 bg-muted duration-300",
-         variant === "default" && "[clip-path:circle(0%_at_0%_0%)] group-hover:[clip-path:circle(140%_at_0%_0%)]",
+         variant === "default" && "[clip-path:circle(0%_at_0%_0%)] group-hover:[clip-path:circle(145%_at_0%_0%)]",
          variant === "outline" && "[clip-path:circle(0%_at_100%_100%)] group-hover:[clip-path:circle(140%_at_100%_100%)]"
       )}
    />
 );
 
-export function Button({ className, onClick, children, variant = "default", href }: Props) {
+export function Button({ className, onClick, children, variant = "default", href, type = "button" }: Props) {
    if (href) {
       return (
          <a href={href} className={cn("flex items-center", getClassName(variant, className))}>
@@ -49,7 +50,7 @@ export function Button({ className, onClick, children, variant = "default", href
 
    return (
       <button
-         type="button"
+         type={type}
          onClick={onClick}
          className={getClassName(variant, className)}
       >

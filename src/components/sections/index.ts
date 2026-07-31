@@ -4,3 +4,5 @@ export { Skills } from "./skills";
 export { Services } from "./services";
 export { Projects } from "./projects";
 export { Testimonials } from "./testimonials";
+export { ManifestoSection } from "./manifesto-section";
+export { Contact } from "./contact";

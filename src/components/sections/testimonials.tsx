@@ -23,7 +23,7 @@ export function Testimonials({ className }: Props) {
                      Отзывы
                   </p>
 
-                  <Heading accent="клиенты." second>
+                  <Heading accent="клиенты" second>
                      Говорят
                   </Heading>
                </div>
