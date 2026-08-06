@@ -10,7 +10,7 @@ interface Testimonial {
 export const TESTIMONIALS: Testimonial[] = [
    {
       id: 1,
-      text: "Арман полностью разработал сайт для нашей компании. Получился современный, быстрый и понятный продукт. Особенно понравилось внимание к деталям и плавным анимациям.",
+      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore est consequatur esse dolorum perspiciatis tenetur, nam tempora quos. Veniam totam eaque sint nihil ullam.",
       rating: 5,
       date: "18 июля 2026",
       service: "Сайт",
@@ -18,7 +18,7 @@ export const TESTIMONIALS: Testimonial[] = [
    },
    {
       id: 2,
-      text: "Нужно было доработать существующий интернет-магазин и исправить ошибки на мобильных устройствах. Все задачи выполнены аккуратно и раньше согласованного срока.",
+      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore est consequatur esse dolorum perspiciatis tenetur, nam tempora quos. Veniam totam eaque sint nihil ullam.",
       rating: 5,
       date: "2 июля 2026",
       service: "Доработка сайта",
@@ -26,7 +26,7 @@ export const TESTIMONIALS: Testimonial[] = [
    },
    {
       id: 3,
-      text: "После SEO-оптимизации страницы стали загружаться заметно быстрее, а сайт начал лучше индексироваться. Получили подробные рекомендации по дальнейшему развитию.",
+      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore est consequatur esse dolorum perspiciatis tenetur, nam tempora quos. Veniam totam eaque sint nihil ullam.",
       rating: 5,
       date: "21 июня 2026",
       service: "SEO",
@@ -34,7 +34,7 @@ export const TESTIMONIALS: Testimonial[] = [
    },
    {
       id: 4,
-      text: "Заказывали лендинг для нового продукта. Арман помог улучшить структуру макета, предложил несколько удачных решений и качественно реализовал адаптивную версию.",
+      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore est consequatur esse dolorum perspiciatis tenetur, nam tempora quos. Veniam totam eaque sint nihil ullam.",
       rating: 5,
       date: "9 июня 2026",
       service: "Сайт",
@@ -42,7 +42,7 @@ export const TESTIMONIALS: Testimonial[] = [
    },
    {
       id: 5,
-      text: "Требовалось подключить формы, аналитику и исправить некорректную работу меню. Все изменения были внесены без нарушения существующей логики сайта.",
+      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore est consequatur esse dolorum perspiciatis tenetur, nam tempora quos. Veniam totam eaque sint nihil ullam.",
       rating: 5,
       date: "28 мая 2026",
       service: "Доработка сайта",
@@ -50,7 +50,7 @@ export const TESTIMONIALS: Testimonial[] = [
    },
    {
       id: 6,
-      text: "Провели технический аудит и исправили проблемы, которые мешали продвижению. Понравилось, что каждый этап работы был подробно объяснён.",
+      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore est consequatur esse dolorum perspiciatis tenetur, nam tempora quos. Veniam totam eaque sint nihil ullam.",
       rating: 4,
       date: "14 мая 2026",
       service: "SEO",
@@ -58,7 +58,7 @@ export const TESTIMONIALS: Testimonial[] = [
    },
    {
       id: 7,
-      text: "Получился удобный корпоративный сайт с понятной административной частью. Работа проходила прозрачно, все промежуточные результаты показывались заранее.",
+      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore est consequatur esse dolorum perspiciatis tenetur, nam tempora quos. Veniam totam eaque sint nihil ullam.",
       rating: 5,
       date: "30 апреля 2026",
       service: "Сайт",
@@ -66,7 +66,7 @@ export const TESTIMONIALS: Testimonial[] = [
    },
    {
       id: 8,
-      text: "Обратились с задачей ускорить сайт и убрать визуальные ошибки. Скорость загрузки выросла, интерфейс стал стабильнее, а мобильная версия — гораздо удобнее.",
+      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore est consequatur esse dolorum perspiciatis tenetur, nam tempora quos. Veniam totam eaque sint nihil ullam.",
       rating: 5,
       date: "17 апреля 2026",
       service: "Доработка сайта",
@@ -74,7 +74,7 @@ export const TESTIMONIALS: Testimonial[] = [
    },
    {
       id: 9,
-      text: "Арман подготовил сайт к продвижению: настроил метаданные, структуру заголовков и технические файлы. Результатом полностью довольны.",
+      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore est consequatur esse dolorum perspiciatis tenetur, nam tempora quos. Veniam totam eaque sint nihil ullam.",
       rating: 5,
       date: "5 апреля 2026",
       service: "SEO",

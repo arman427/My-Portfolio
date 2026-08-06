@@ -2,7 +2,6 @@ import { cn } from "@/lib/utils"
 import { Container } from "../shared";
 import { Heading } from "../ui";
 import Image from "next/image";
-import Link from "next/link";
 import { PROJECTS } from "@/constants/portfolio-data";
 import { SquareArrowOutUpRight } from "lucide-react";
 
