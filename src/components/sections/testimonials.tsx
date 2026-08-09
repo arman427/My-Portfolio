@@ -56,7 +56,7 @@ export function Testimonials({ className }: Props) {
 
                                 {/* Рейтинг */}
                                 <div
-                                    className="mb-5 flex items-center gap-1"
+                                    className="mb-2 sm:mb-5 flex items-center gap-1"
                                     aria-label={`Оценка ${testimonial.rating} из 5`}
                                 >
                                     {Array.from({ length: 5 }).map((_, index) => {
@@ -78,7 +78,7 @@ export function Testimonials({ className }: Props) {
                                 </div>
 
                                 {/* Отзыв */}
-                                <blockquote className="text-[15px] leading-relaxed text-muted mb-3">
+                                <blockquote className="text-[14px] sm:text-[15px] leading-relaxed text-muted mb-3">
                                     «{testimonial.text}»
                                 </blockquote>
                             </div>
@@ -90,7 +90,7 @@ export function Testimonials({ className }: Props) {
                                         {testimonial.author} <span className="text-text">- Клиент</span>
                                     </p>
                                 </div>
-                                <div className="flex flex-col text-xs mt-1.5 gap-0.5">
+                                <div className="flex items-center text-xs mt-1.5 gap-2">
                                     <p>{testimonial.service}</p>
                                     <p>{testimonial.date}</p>
                                 </div>

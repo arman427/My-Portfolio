@@ -18,7 +18,7 @@ export function Footer() {
     return (
         <footer className="mb-30">
             <Container>
-                <div className="rounded-[50px] bg-accent px-3 py-10 text-white sm:px-10 md:px-15 md:py-20">
+                <div className="rounded-4xl bg-accent px-10 py-20 text-white sm:px-10 md:px-15 md:py-20">
                     {/* Верхняя секция */}
                     <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_auto] lg:gap-10">
                         {/* Бренд */}
