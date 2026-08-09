@@ -27,15 +27,14 @@ export function ManifestoSection({ className }: Props) {
         () => {
             const chars = gsap.utils.toArray<HTMLElement>(".manifesto-char");
 
-            // Сначала сбрасываем Tailwind translateY через GSAP
             gsap.set(chars, { y: 20, opacity: 0 });
 
             gsap.to(chars, {
-                color: "hsl(0 0% 7%)", // или твой --foreground
+                color: "black",
                 y: 0,
                 opacity: 1,
-                stagger: 0.008,
-                ease: "power2.out",
+                stagger: 0.02,
+                ease: "power3.inOut",
                 scrollTrigger: {
                     trigger: textRef.current,
                     start: "top 80%",

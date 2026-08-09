@@ -10,7 +10,7 @@ export function Navigation({ className }: Props) {
     const { isPassed } = useScrollThreshold(500);
 
     return (
-        <nav className={cn("pointer-events-auto hidden sm:flex opacity-0 translate-y-6 absolute inset-x-0 z-500 bottom-8 justify-center h-14 duration-400", {
+        <nav className={cn("pointer-events-auto hidden sm:flex opacity-0 translate-y-6 absolute inset-x-0 z-500 bottom-8 justify-center h-14 duration-300", {
             "opacity-100 translate-y-0": isPassed
         })}>
             <ul className="text-white flex items-center gap-3 bg-muted rounded-full pl-6 py-1 pr-1">
@@ -35,7 +35,7 @@ export function Navigation({ className }: Props) {
                     ) : (
                         <li
                             key={link.label}
-                            className="hover:-translate-y-0.5 hover:text-accent active:-translate-y-0.5 active:text-accent font-medium duration-300 ease"
+                            className="hover:-translate-y-0.5 hover:text-accent active:-translate-y-0.5 active:text-accent font-medium duration-200 ease"
                         >
                             <a href={link.href} className="p-2">{link.label}</a>
                         </li>

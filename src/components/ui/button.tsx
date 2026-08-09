@@ -6,7 +6,7 @@ interface BaseProps {
     type?: "submit" | "button";
     onClick?: () => void;
     disabled?: boolean;
-    children: React.ReactNode;
+    children?: React.ReactNode;
 }
 
 interface ButtonProps extends BaseProps {

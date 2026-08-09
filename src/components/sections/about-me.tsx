@@ -13,7 +13,7 @@ export function AboutMe({ className }: Props) {
         <>
             <div className={cn("min-h-screen flex items-center about-section", className)} id="about">
                 <Container>
-                    <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_auto] lg:gap-60">
+                    <div className="grid grid-cols-1 items-end gap-10 lg:grid-cols-[1fr_auto] lg:gap-60">
                         <div className="">
                             <p className="mb-4 font-title flex items-center gap-2 text-sm text-text">
                                 <span className="h-px w-5 bg-text rounded-full" />
@@ -25,7 +25,7 @@ export function AboutMe({ className }: Props) {
                             <p className="mb-4">Веб-разработчик &middot; Frontend &middot; Адаптивная вёрстка</p>
                             <p className="mb-4 text-pretty max-w-165">Проектирую и верстаю сайты, которыми приятно пользоваться. Объединяю продуманную структуру, аккуратную верстку и плавные анимации, чтобы ваш проект выглядел максимально стильно и современно.</p>
                             <p className="mb-8">Готов к амбициозным задачам.</p>
-                            <div className="flex flex-wrap items-center gap-5 w-fitfont-medium mb-5">
+                            <div className="flex flex-wrap items-center gap-5 w-fitfont-medium mb-5 sm:mb-10">
                                 <Button className="h-11 text-sm p-0">
                                     <a href="tel:+79610599262" className="flex items-center justify-center h-full px-10 gap-2">
                                         <Phone size={14} />

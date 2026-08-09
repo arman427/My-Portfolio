@@ -12,6 +12,8 @@ import { lenisRef } from "../providers/SmoothScroll";
 import { SendMessage } from "@/server-actions/send-message";
 import { Spinner } from "../ui/spinner";
 import { toast } from "../ui/toast";
+import { Checkbox } from "../ui/checkbox";
+import Link from "next/link";
 
 interface Props {
     className?: string
@@ -30,6 +32,7 @@ export function Contact({ className }: Props) {
         register,
         handleSubmit,
         reset,
+        setValue,
         formState: { errors },
     } = useForm<ContactFormValues>({
         resolver: zodResolver(contactSchema),
@@ -38,6 +41,7 @@ export function Contact({ className }: Props) {
             email: "",
             message: "",
             materialsLink: "",
+            politika: false
         },
     });
 
@@ -154,7 +158,7 @@ export function Contact({ className }: Props) {
                             )}
                         </div>
 
-                        <div className="mb-10">
+                        <div className="mb-7">
                             <label htmlFor="materialsLink" className="mb-2 block font-title text-sm text-text">
                                 Ссылка на материалы
                             </label>
@@ -167,6 +171,23 @@ export function Contact({ className }: Props) {
                             />
                             {errors.materialsLink && (
                                 <p className="text-red-500! text-sm mt-1">{errors.materialsLink.message}</p>
+                            )}
+                        </div>
+
+                        <div className="mb-10">
+                            <div className="flex items-center gap-3 ">
+                                <Checkbox id="politika" onCheckedChange={(checked) => setValue("politika", checked === true)} />
+                                <label htmlFor="politika" className="font-title text-sm text-text select-none">Я согласен(а) нa { }
+                                    <Link
+                                        href="/privacy-policy"
+                                        className="text-accent font-semibold border-b"
+                                    >
+                                        обработку персональных данных
+                                    </Link>
+                                </label>
+                            </div>
+                            {errors.politika && (
+                                <p className="text-red-500! text-sm mt-1">{errors.politika.message}</p>
                             )}
                         </div>
 

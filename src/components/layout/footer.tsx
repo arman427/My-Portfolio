@@ -1,11 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { ArrowUp, Mail, Phone, Send } from "lucide-react";
+import { Phone } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ABOUT_SOCIAL } from "@/constants/about-social-data";
 import { Container, CurrentTime } from "../shared";
-import { lenisRef } from "../providers/SmoothScroll";
 
 const CONTACTS = [
     {
@@ -18,9 +16,9 @@ const CONTACTS = [
 
 export function Footer() {
     return (
-        <footer className="mb-40">
+        <footer className="mb-30">
             <Container>
-                <div className="rounded-3xl bg-accent px-3 py-10 text-white sm:px-10 md:px-15 md:py-20">
+                <div className="rounded-[50px] bg-accent px-3 py-10 text-white sm:px-10 md:px-15 md:py-20">
                     {/* Верхняя секция */}
                     <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_auto] lg:gap-10">
                         {/* Бренд */}
