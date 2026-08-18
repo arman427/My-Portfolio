@@ -9,9 +9,4 @@ export const PROJECTS = [
       href: "https://asphalt-vlg.vercel.app/",
       imageUrl: "/portfolio-2.jpg"
    },
-   {
-      id: 3,
-      href: "https://next-todo-list-theta.vercel.app/",
-      imageUrl: "/portfolio-3.jpg"
-   }
 ] as const;
