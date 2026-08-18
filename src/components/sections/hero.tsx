@@ -116,22 +116,6 @@ export function Hero({ className }: Props) {
                 <Navigation />
             </div>
 
-            <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-                <video
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    poster="/hexagon-poster.jpg"
-                    className="absolute inset-0 size-full scale-105 object-cover"
-                >
-                    <source src="/welcome.mp4" type="video/mp4" />
-                </video>
-
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
-            </div>
-
             <div className="absolute inset-0 -z-5 bg-gradient-to-t from-background via-background/90 to-background/50 pointer-events-none" />
 
             <section className="flex min-h-screen text-center sm:text-left flex-col items-center justify-center gap-10 px-4 py-24 sm:px-8 lg:flex-row lg:gap-16 lg:px-40">
