@@ -108,7 +108,8 @@ export function Hero({ className }: Props) {
     }, []);
 
     return (
-        <div className="relative min-h-screen">
+        <div className="relative min-h-screen bg-background">
+            <div className="absolute w-full h-full inset-0 bg-white animate-pulse" />
             <div className="pointer-events-none fixed inset-x-0 bottom-0 z-60 h-60 bg-ink">
                 <div
                     className="absolute inset-0 bg-gradient-to-t from-background/50 via-background/40 to-background/10 backdrop-blur-lg [mask-image:linear-gradient(to_top,black_35%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_top,black_35%,transparent_100%)]"
@@ -118,7 +119,7 @@ export function Hero({ className }: Props) {
 
             <div className="absolute inset-0 -z-5 bg-gradient-to-t from-background via-background/90 to-background/50 pointer-events-none" />
 
-            <section className="flex min-h-screen text-center sm:text-left flex-col items-center justify-center gap-10 px-4 py-24 sm:px-8 lg:flex-row lg:gap-16 lg:px-40">
+            <section className="flex relative z-10 min-h-screen text-center sm:text-left flex-col items-center justify-center gap-10 px-4 py-24 sm:px-8 lg:flex-row lg:gap-16 lg:px-40">
                 <div className="grid w-full flex-1 grid-rows-[1fr_auto_1fr] lg:h-[450px]">
                     <p className="self-end pb-3 sm:pb-6">
                         Next.js Разработчик
