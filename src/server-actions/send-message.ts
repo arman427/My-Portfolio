@@ -1,22 +1,28 @@
 "use server";
 
 import { ContactFormValues } from "@/constants/contact-data";
-import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 import { headers } from "next/headers";
 
-const rateLimit = new Ratelimit({
-    redis: Redis.fromEnv(),
-    limiter: Ratelimit.slidingWindow(1, "15m"),
-});
+const COOLDOWN_MS = 15 * 60 * 1000;
 
 export async function SendMessage(data: ContactFormValues) {
     const { name, email, message, materialsLink } = data;
     const ip = (await headers()).get("x-forwarded-for") ?? "anonymous";
-    const { success, reset } = await rateLimit.limit(ip);
-    if (!success) {
-        const minutesLeft = Math.ceil((reset - Date.now()) / 60000);
-        return { success: false, error: `Подождите ${minutesLeft} мин. перед следующей отправкой` };
+
+    const redis = Redis.fromEnv();
+    const key = `contact-cooldown:${ip}`;
+
+    const lastSent = await redis.get<number>(key);
+    const now = Date.now();
+
+    // Строгий кулдаун ровно 15 минут с момента последней успешной отправки
+    if (lastSent) {
+        const elapsed = now - lastSent;
+        if (elapsed < COOLDOWN_MS) {
+            const minutesLeft = Math.ceil((COOLDOWN_MS - elapsed) / 60000);
+            return { success: false, error: `Подождите ${minutesLeft} мин. перед следующей отправкой` };
+        }
     }
 
     const token = process.env.TELEGRAM_BOT_TOKEN;
@@ -52,6 +58,9 @@ export async function SendMessage(data: ContactFormValues) {
             console.error("Telegram error:", errorBody);
             throw new Error("Ошибка API");
         }
+
+        // Только после успешной отправки фиксируем время, чтобы кулдаун был честным
+        await redis.set(key, now, { ex: Math.ceil(COOLDOWN_MS / 1000) });
 
         return { success: true };
     } catch (error) {
