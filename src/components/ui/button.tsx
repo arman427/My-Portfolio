@@ -43,7 +43,7 @@ export function Button({ className, onClick, children, variant = "default", href
     if (href) {
         return (
             <a href={href} className={cn("flex items-center", getClassName(variant, className))}>
-                <span className="relative z-10 transition-colors duration-300">{children}</span>
+                <span className="flex items-center gap-2 relative z-10 transition-colors duration-300">{children}</span>
                 {getInnerSpan(variant)}
             </a>
         );
