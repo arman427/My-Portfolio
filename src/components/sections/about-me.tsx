@@ -25,12 +25,10 @@ export function AboutMe({ className }: Props) {
                             <p className="mb-4">Веб-разработчик &middot; Frontend &middot; Адаптивная вёрстка</p>
                             <p className="mb-4 text-pretty max-w-165">Проектирую и верстаю сайты, которыми приятно пользоваться. Объединяю продуманную структуру, аккуратную верстку и плавные анимации, чтобы ваш проект выглядел максимально стильно и современно.</p>
                             <p className="mb-8">Готов к амбициозным задачам.</p>
-                            <div className="flex flex-wrap items-center gap-5 w-fitfont-medium mb-5 sm:mb-10">
-                                <Button className="h-11 text-sm p-0">
-                                    <a href="tel:+79610599262" className="flex items-center justify-center h-full px-10 gap-2">
-                                        <Phone size={14} />
-                                        Позвонить
-                                    </a>
+                            <div className="flex flex-wrap items-center gap-5 w-fit font-medium mb-5 sm:mb-10">
+                                <Button href="tel:+79610599262" className="h-11 text-sm px-10">
+                                    <Phone size={14} />
+                                    Позвонить
                                 </Button>
                                 <Button href="https://t.me/armanhik7" className="pill h-11 px-10 text-sm" variant="outline">
                                     Телеграм
@@ -45,6 +43,8 @@ export function AboutMe({ className }: Props) {
                                         <a
                                             key={icon.id}
                                             href={icon.href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
                                             className={cn(
                                                 "group relative grid p-3 shrink-0 hover:bg-accent hover:text-white active:bg-accent active:text-white duration-400",
                                                 "rounded-xl flex items-center border border-black/10 text-muted"

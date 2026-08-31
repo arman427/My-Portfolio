@@ -64,7 +64,7 @@ export function Contact({ className }: Props) {
                 });
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
             toast.add({
                 type: "error",
                 description: "Произошла непредвиденная ошибка"
@@ -76,7 +76,7 @@ export function Contact({ className }: Props) {
     };
 
     return (
-        <div className={cn("mb-50", className)} id="contacts">
+        <div className={cn("mb-20 lg:mb-50", className)} id="contacts">
             <Container>
                 <div className="grid grid-cols-1 gap-16 items-start lg:grid-cols-[1fr_1.2fr]">
                     {/* Левая колонка */}

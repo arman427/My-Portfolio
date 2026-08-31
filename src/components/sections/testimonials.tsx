@@ -12,7 +12,7 @@ export function Testimonials({ className }: Props) {
     return (
         <section
             id="reviews"
-            className={cn("mb-50", className)}
+            className={cn("mb-20 lg:mb-50", className)}
         >
             <Container>
                 {/* Заголовок секции */}
@@ -42,7 +42,7 @@ export function Testimonials({ className }: Props) {
                                 <article
                                     key={testimonial.id}
                                     className={cn(
-                                        "group flex h-[270px] flex-col justify-between",
+                                        "group flex min-h-[270px] flex-col justify-between",
                                         "rounded-4xl border border-black/5 bg-white p-7",
                                         "transition-all duration-300",
                                         "hover:-translate-y-1",
@@ -101,7 +101,7 @@ export function Testimonials({ className }: Props) {
                             ))}
                         </div>
                     ) : (
-                        <h1 className="text-center text-xl font-medium">Отзывов пока нет.</h1>
+                        <p className="text-center text-xl font-medium text-text">Отзывов пока нет.</p>
                     )
                 }
             </Container>

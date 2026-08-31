@@ -1,13 +1,24 @@
 "use server";
 
-import { ContactFormValues } from "@/constants/contact-data";
+import { contactSchema } from "@/constants/contact-data";
 import { Redis } from "@upstash/redis";
 import { headers } from "next/headers";
 
 const COOLDOWN_MS = 15 * 60 * 1000;
 
-export async function SendMessage(data: ContactFormValues) {
-    const { name, email, message, materialsLink } = data;
+/** Экранирует спецсимволы Markdown v1 для безопасной вставки в Telegram */
+function escapeMarkdown(text: string): string {
+    return text.replace(/([_*`\[\]])/g, "\\$1");
+}
+
+export async function SendMessage(data: unknown) {
+    // Серверная валидация — клиентскую можно обойти
+    const parsed = contactSchema.safeParse(data);
+    if (!parsed.success) {
+        return { success: false, error: "Некорректные данные формы" };
+    }
+
+    const { name, email, message, materialsLink } = parsed.data;
     const ip = (await headers()).get("x-forwarded-for") ?? "anonymous";
 
     const redis = Redis.fromEnv();
@@ -34,12 +45,12 @@ export async function SendMessage(data: ContactFormValues) {
     }
 
     const text = [
-        '📩 *Новая заявка с портфолио!*',
+        '📩 *Новая заявка с портфолио\\!*',
         '',
-        `👤 *Имя:* ${name}`,
-        `📧 *Email:* ${email}`,
-        `💬 *Сообщение:* ${message}`,
-        ...(materialsLink ? [`🔗 *Материалы:* ${materialsLink}`] : []),
+        `👤 *Имя:* ${escapeMarkdown(name)}`,
+        `📧 *Email:* ${escapeMarkdown(email)}`,
+        `💬 *Сообщение:* ${escapeMarkdown(message)}`,
+        ...(materialsLink ? [`🔗 *Материалы:* ${escapeMarkdown(materialsLink)}`] : []),
     ].join('\n');
 
     try {

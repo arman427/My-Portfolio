@@ -16,7 +16,7 @@ const CONTACTS = [
 
 export function Footer() {
     return (
-        <footer className="mb-30">
+        <footer className="mb-10 lg:mb-30">
             <Container>
                 <div className="rounded-4xl bg-accent px-10 py-20 text-white sm:px-10 md:px-15 md:py-20">
                     {/* Верхняя секция */}
@@ -68,6 +68,8 @@ export function Footer() {
                                     <a
                                         key={social.id}
                                         href={social.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         aria-label={social.label}
                                         className="group grid size-11 place-items-center rounded-xl bg-white/10 text-white relative transition-colors duration-300 hover:bg-white hover:text-accent active:bg-white active:text-accent border border-muted/20 hover:border-transparent active:border-transparent"
                                     >

@@ -7,7 +7,7 @@ import { Flip } from "gsap/Flip";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
 import { Button } from "../ui";
-import { CurrentTime } from "../shared";
+import { Container, CurrentTime } from "../shared";
 import { Navigation } from "../layout/navigation";
 
 interface Props {
@@ -109,7 +109,6 @@ export function Hero({ className }: Props) {
 
     return (
         <div className="relative min-h-screen bg-background">
-            <div className="absolute w-full h-full inset-0 bg-white animate-pulse" />
             <div className="pointer-events-none fixed inset-x-0 bottom-0 z-60 h-60 bg-ink">
                 <div
                     className="absolute inset-0 bg-gradient-to-t from-background/50 via-background/40 to-background/10 backdrop-blur-lg [mask-image:linear-gradient(to_top,black_35%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_top,black_35%,transparent_100%)]"
@@ -119,55 +118,75 @@ export function Hero({ className }: Props) {
 
             <div className="absolute inset-0 -z-5 bg-gradient-to-t from-background via-background/90 to-background/50 pointer-events-none" />
 
-            <section className="flex relative z-10 min-h-screen text-center sm:text-left flex-col items-center justify-center gap-10 px-4 py-24 sm:px-8 lg:flex-row lg:gap-16 lg:px-40">
-                <div className="grid w-full flex-1 grid-rows-[1fr_auto_1fr] lg:h-[450px]">
-                    <p className="self-end pb-3 sm:pb-6">
-                        Next.js Разработчик
-                        Frontend & Backend
-                    </p>
+            <Container>
+                {/* Добавили flex-col-reverse для мобилок (чтобы фото было сверху или снизу, как вам больше нравится, тут текст сверху), 
+        gap-12 для расстояния между текстом и фото на планшетах/мобилках, 
+        и padding-y на случай если экран слишком маленький */}
+                <section className="flex min-h-screen flex-col lg:flex-row items-center justify-center lg:justify-between gap-12 py-20 lg:py-0">
 
-                    <h1 className="font-title opacity-0 translate-y-[10px] text-7xl tracking-tight font-extrabold text-muted firstName sm:text-8xl">
-                        АРМАН
-                    </h1>
+                    {/* Контент: имя и тексты слева */}
+                    {/* Добавили text-center для мобилок и gap-6 для равномерных отступов */}
+                    <div className="flex w-full max-w-[640px] flex-col items-center text-center lg:items-start lg:text-left gap-6 lg:gap-8">
 
-                    <div className="self-start pt-4 sm:pt-8 w-fit mx-auto sm:mx-0">
-                        <Button href="tel:+79610599262" className="h-15 font-medium px-15">
-                            Позвонить
-                        </Button>
+                        {/* Надзаголовок */}
+                        <p className="text-sm font-semibold tracking-wider text-muted-foreground sm:text-base uppercase">
+                            Next.js Разработчик
+                            <span className="hidden lg:inline"> <br /> </span>
+                            <span className="lg:hidden"> • </span>
+                            Frontend & Backend
+                        </p>
+
+                        {/* Имя (Заголовки сгруппированы, чтобы не разъезжались) */}
+                        <div className="flex flex-col text-muted">
+                            <h1 className="font-title opacity-0 translate-y-[10px] font-extrabold leading-[0.9] tracking-tight text-foreground firstName text-[clamp(3.5rem,8vw,6.5625rem)]">
+                                АРМАН
+                                <span className="block opacity-0 translate-y-[10px] lastName">
+                                    БАБАЯН
+                                </span>
+                            </h1>
+                        </div>
+
+                        {/* Стек технологий и время */}
+                        <div className="flex flex-col items-center lg:items-start text-sm sm:text-base text-muted-foreground gap-3">
+                            <p className="font-medium">
+                                React • TypeScript • Node.js • Prisma
+                            </p>
+                            <div className="flex items-center gap-3">
+                                {/* Сделали точку более заметной и добавили пульсацию для живости (по желанию) */}
+                                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent animate-pulse" />
+                                <CurrentTime />
+                            </div>
+                        </div>
+
+                        {/* Кнопка (убрали mt-1, так как теперь всем управляет gap у родителя) */}
+                        <div className="pt-2">
+                            <Button href="tel:+79610599262" className="h-14 px-10 text-base rounded-full">
+                                Позвонить
+                            </Button>
+                        </div>
                     </div>
-                </div>
 
-                <div
-                    ref={imageWrapperRef}
-                    className="relative h-auto w-full max-w-[400px] shrink-0 overflow-hidden rounded-3xl welcome-img-wrapper aspect-[5/6] lg:aspect-auto lg:h-[480px]"
-                    style={{
-                        clipPath: "inset(100% 0% 0% 0%)",
-                    }}
-                >
-                    <Image
-                        src="/portret.jpeg"
-                        alt="Портрет"
-                        fill
-                        quality={75}
-                        sizes="(max-width: 1024px) 100vw, 400px"
-                        className="object-cover welcome-img rounded-3xl relative z-400"
-                    />
-                </div>
-
-                <div className="grid w-full flex-1 grid-rows-[1fr_auto_1fr] sm:text-right lg:h-[450px]">
-                    <p className="self-end pb-3 sm:pb-6">
-                        React & TypeScript & Node.js & Prisma
-                    </p>
-
-                    <h1 className="font-title opacity-0 translate-y-[10px] tracking-tight text-7xl font-extrabold text-muted lastName sm:text-8xl">
-                        БАБАЯН
-                    </h1>
-
-                    <div className="self-start pt-4 sm:pt-8">
-                        <CurrentTime />
+                    {/* Портрет справа */}
+                    <div
+                        ref={imageWrapperRef}
+                        // Сделали адаптивную ширину для мобилок, чтобы картинка не была слишком огромной
+                        className="relative w-full max-w-[320px] sm:max-w-[400px] shrink-0 overflow-hidden rounded-3xl welcome-img-wrapper aspect-[4/5] lg:aspect-auto lg:h-[550px]"
+                        style={{
+                            clipPath: "inset(100% 0% 0% 0%)",
+                        }}
+                    >
+                        <Image
+                            src="/portret.jpeg"
+                            alt="Портрет Армана Бабаяна"
+                            fill
+                            quality={85} // Чуть повысили качество 
+                            priority // Важно добавить priority для главной картинки (LCP)
+                            sizes="(max-width: 1024px) 100vw, 400px"
+                            className="object-cover welcome-img relative z-10"
+                        />
                     </div>
-                </div>
-            </section>
+                </section>
+            </Container>
         </div>
     );
 }

@@ -66,7 +66,8 @@ const SECTIONS = [
         title: "7. Контакты",
         content: `По вопросам, связанным с обработкой персональных данных, вы можете обратиться:
 
-Email: arman@example.com
+Email: babayananuta11@gmail.com
+Телеграм: @armanhik7
 Телефон: +7 961 059-92-62`,
     },
 ];
@@ -102,11 +103,7 @@ export default function PrivacyPolicyPage() {
                         <p className="mt-6 text-text">
                             Последнее обновление:{" "}
                             <span className="text-muted font-medium">
-                                {new Date().toLocaleDateString("ru-RU", {
-                                    day: "numeric",
-                                    month: "long",
-                                    year: "numeric",
-                                })}
+                                31 августа 2026 г.
                             </span>
                         </p>
                     </div>

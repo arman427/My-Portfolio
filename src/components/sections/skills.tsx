@@ -15,14 +15,14 @@ export function Skills({ className }: Props) {
     return (
         <section className="mb-50">
             <div className="marquee relative overflow-hidden sm:mx-auto sm:max-w-[1400px] sm:px-4">
-                <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-50 bg-linear-to-r from-background via-background/70 to-transparent" />
-                <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-50 bg-linear-to-l from-background via-background/70 to-transparent" />
+                <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-10 sm:w-50 bg-linear-to-r from-background via-background/10 to-transparent" />
+                <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-10 sm:w-50 bg-linear-to-l from-background via-background/10 to-transparent" />
                 <div className="marquee__track flex w-max gap-12 py-10">
                     {[...SKILLS, ...SKILLS].map((skill, i) => (
                         <Image
                             key={`${skill.id}-${i}`}
                             src={skill.iconUrl}
-                            alt=""
+                            alt={skill.name}
                             width={64}
                             height={64}
                             draggable={false}
