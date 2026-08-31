@@ -1,17 +1,18 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 export const useScrollThreshold = (threshold: number) => {
     const [isPassed, setIsPassed] = useState(false);
+    const passedRef = useRef(false);
 
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > threshold) {
-                setIsPassed(true);
-            } else {
-                setIsPassed(false);
+            const next = window.scrollY > threshold;
+            if (next !== passedRef.current) {
+                passedRef.current = next;
+                setIsPassed(next);
             }
         };
-        window.addEventListener("scroll", handleScroll);
+        window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, [threshold]);
 

@@ -15,13 +15,21 @@ export function CurrentTime({ className }: { className?: string }) {
             }).format(new Date());
 
             setTime(currentTime);
-        }
+        };
 
         updateTime();
 
-        const interval = setInterval(updateTime, 1000);
+        // Ждём до начала следующей минуты, потом тикаем каждые 60с
+        const now = new Date();
+        const msUntilNextMinute = (60 - now.getSeconds()) * 1000 - now.getMilliseconds();
 
-        return () => clearInterval(interval);
+        const timeout = setTimeout(() => {
+            updateTime();
+            const interval = setInterval(updateTime, 60_000);
+            return () => clearInterval(interval);
+        }, msUntilNextMinute);
+
+        return () => clearTimeout(timeout);
     }, []);
 
     return (
